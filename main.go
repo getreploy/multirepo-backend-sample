@@ -21,5 +21,5 @@ func main() {
 
 func ReturnBranchNameHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, `{ "branch": "main" }`)
+	fmt.Fprintf(w, `{ "branch": "testing" }`)
 }
