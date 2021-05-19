@@ -19,8 +19,8 @@ func main() {
 
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{
-			os.Getenv("REACT_APP_BACKEND"),
-			os.Getenv("REACT_APP_FRONTEND"),
+			os.Getenv("REPLOY_BACKEND"),
+			os.Getenv("REPLOY_FRONTEND"),
 		},
 		AllowCredentials: true,
 		AllowedHeaders:   []string{"id-token", "content-type"},
