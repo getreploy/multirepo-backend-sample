@@ -27,6 +27,7 @@ func main() {
 	})
 
 	r := mux.NewRouter()
+	r.HandleFunc("/health", OKHandler)
 	r.HandleFunc("/branch", ReturnBranchNameHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(r)))
@@ -36,4 +37,8 @@ func ReturnBranchNameHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, `{ "branch": "testing" }`)
+}
+
+func OKHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
 }
