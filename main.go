@@ -12,8 +12,14 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Hello world")
+	fmt.Println("Starting Backend")
 
 	r := mux.NewRouter()
+	r.HandleFunc("/branch", ReturnBranchNameHandler)
 	http.Handle("/", r)
+}
+
+func ReturnBranchNameHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, `{ "branch": "main" }`)
 }
