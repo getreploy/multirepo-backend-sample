@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 func init() {
@@ -15,10 +17,19 @@ func init() {
 func main() {
 	fmt.Println("Starting Backend")
 
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{
+			os.Getenv("REPLOY_BACKEND"),
+			os.Getenv("REPLOY_FRONTEND"),
+		},
+		AllowCredentials: true,
+		AllowedHeaders:   []string{"id-token", "content-type"},
+	})
+
 	r := mux.NewRouter()
 	r.HandleFunc("/branch", ReturnBranchNameHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", c.Handler(r)))
 }
 
 func ReturnBranchNameHandler(w http.ResponseWriter, r *http.Request) {
