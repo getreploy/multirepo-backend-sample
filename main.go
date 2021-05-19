@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -16,7 +17,8 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/branch", ReturnBranchNameHandler)
-	http.Handle("/", r)
+
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
 
 func ReturnBranchNameHandler(w http.ResponseWriter, r *http.Request) {
