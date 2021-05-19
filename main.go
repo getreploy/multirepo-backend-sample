@@ -36,7 +36,7 @@ func main() {
 func ReturnBranchNameHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, `{ "branch": "testing" }`)
+	fmt.Fprintf(w, `{ "branch": "main" }`)
 }
 
 func OKHandler(w http.ResponseWriter, r *http.Request) {
